@@ -6,6 +6,10 @@ API backend for the [Kanban Web](https://github.com/chawkitariq/kanban-web) Proj
 
 - [Docker](https://docs.docker.com/engine/install/): Install Docker and Docker Compose.
 
+## Setup
+
+- Copy the `.env.example` file to `.env` to configure your environment variables.
+
 ## Usage
 
 ### Developement
