@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - "dbdata:/var/lib/pgsql/data"
+    ports:
+      - "${DB_PORT}:5432"
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - "./:/home/node/api"
+    ports:
+      - "3000:3000"
+    command: "yarn start:dev"
+    depends_on:
+      - db
+  
+volumes:
+  dbdata:

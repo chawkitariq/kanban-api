@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - "dbdata:/var/lib/pgsql/data"
+    ports:
+      - "${DB_PORT}:5432"
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DB_PORT: "5432"
+  
+volumes:
+  dbdata:
