@@ -17,7 +17,9 @@ export class IssueService {
   }
 
   findAll() {
-    return this.issueRepository.find();
+    return this.issueRepository.find({
+      relations: ['project', 'parent', 'asignee', 'author'],
+    });
   }
 
   findBy(where: Parameters<typeof this.issueRepository.findBy>['0']) {
@@ -25,7 +27,10 @@ export class IssueService {
   }
 
   findOne(id: string) {
-    return this.issueRepository.findOneBy({ id });
+    return this.issueRepository.findOne({
+      where: { id },
+      relations: ['project', 'parent', 'asignee', 'author'],
+    });
   }
 
   update(id: string, updateIssueDto: UpdateIssueDto) {

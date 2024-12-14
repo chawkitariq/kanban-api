@@ -22,7 +22,7 @@ export class ProjectIssueController {
     this.issueService.create({
       ...createIssueDto,
       project,
-      asignee
+      asignee,
     });
   }
 
